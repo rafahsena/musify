@@ -1,13 +1,17 @@
 import React from "react";
-import FormFunctional from "./FormFunctional";
+import Header from "./components/Header/Header";
+import Content from "./components/Content/Content";
+import { BrowserRouter as Router } from "react-router-dom";
+
 
 class Welcome extends React.Component {
+
   render() {
     return (
-      <div>
-        <div><b>Bem vindo ao Musify</b></div>
-        <FormFunctional />
-      </div>
+      <Router>
+        <Header />
+        <Content />
+      </Router>
     );
   }
 }
