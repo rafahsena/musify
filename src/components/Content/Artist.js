@@ -1,19 +1,23 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
+import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
+    '&:focus': {
+      backgroundColor: "red"
+    },
+    cursor: "pointer"
   },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
+  media: {
+    height: 400,
   },
   title: {
     fontSize: 14,
@@ -23,31 +27,30 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SimpleCard() {
+export default function Artist(props) {
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
+  const cardRef = useRef();
+  
+  const focusCard = () => {
+    cardRef.current.focus();
+  };
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} ref={cardRef} tabIndex={props.tabIndex} onClick={focusCard}>
+      <CardMedia
+          className={classes.media}
+          image={props.artist.cover_image}
+          title={props.artist.title}
+        />
       <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
-          Word of the Day
+          Artist Info
         </Typography>
         <Typography variant="h5" component="h2">
-          be{bull}nev{bull}o{bull}lent
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          adjective
-        </Typography>
-        <Typography variant="body2" component="p">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
+          {props.artist.title}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small">Learn More</Button>
-      </CardActions>
+        <Link to="/details">Ver detalhes</Link>
     </Card>
   );
 }

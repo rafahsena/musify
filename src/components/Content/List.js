@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
+import Artist from "./Artist";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,10 +25,10 @@ const List = (props) => {
 
   return (
     <Grid container className={classes.root} spacing={2}>
-      {props.artists.map((artist) => {
+      {props.artists.map((artist, index) => {
         return (
           <Grid key={artist} item xs={4}>
-            <Paper className={classes.paper}>{artist.title}</Paper>
+            <Artist artist={artist} tabIndex={index} />
           </Grid>
         );
       })}
