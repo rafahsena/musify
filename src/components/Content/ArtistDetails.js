@@ -16,22 +16,22 @@ const useStyles = makeStyles({
   },
 });
 
-const ArtistDetails = (props) => {
+const ArtistDetails = React.memo(({ loading, name, members, id }) => {
   const classes = useStyles();
 
-  return !props.loading ? (
+  return !loading ? (
     <Card className={classes.root}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
           image="/static/images/cards/contemplative-reptile.jpg"
-          title={props.artistDetails.name}
+          title={name}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {props.artistDetails.name}
+            {name + id}
           </Typography>
-          {props.artistDetails.members.map((member) => {
+          {members.map((member) => {
             return (
               <Typography variant="body2" color="textSecondary" component="p">
                 {member.name}
@@ -44,6 +44,6 @@ const ArtistDetails = (props) => {
   ) : (
     <div>Loading...</div>
   );
-};
+});
 
 export default ArtistDetails;

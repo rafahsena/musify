@@ -5,6 +5,7 @@ import SearchArtist from "./SearchArtist";
 import ArtistDetails from "./ArtistDetails";
 
 const Content = (props) => {
+  console.log(props.artistDetails);
 
   return (
     <Switch>
@@ -18,12 +19,14 @@ const Content = (props) => {
       <Route
         path="/details"
         render={(routeProps) => (
-          <ArtistDetails artistDetails={props.artistDetails} loading={props.loading} {...routeProps} />
+          <ArtistDetails
+            {...props.artistDetails}
+            loading={props.loading}
+            {...routeProps}
+          />
         )}
       ></Route>
-      <Route path="/">
-        {props.children}
-      </Route>
+      <Route path="/">{props.children}</Route>
       {props.footer}
     </Switch>
   );

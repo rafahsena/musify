@@ -4,6 +4,7 @@ import List from "./Content/List";
 import Content from "./Content/Content";
 import { BrowserRouter as Router } from "react-router-dom";
 import axios from "axios";
+import mockHttpRequest from "../mock/mockHttp";
 
 const API_TOKEN = "tguPPJpKxdeqjVhxqHoGrbhqUqLVXkBTuUkqzxtS";
 const BASE_URL = "https://api.discogs.com";
@@ -12,6 +13,8 @@ const http = axios.create({
   baseURL: BASE_URL,
   headers: { Authorization: `Discogs token=${API_TOKEN}` },
 });
+
+const http2 = mockHttpRequest;
 
 export const HttpContext = React.createContext();
 
